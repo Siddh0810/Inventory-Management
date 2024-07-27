@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Make Request
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="button" class="btn btn-info" value="Request">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Table
+                </div>
+                <div class="card-body">
+                    <form method = "POST">
+                        {% csrf_token %}
+                        {{ form }}
+                    <table class="table bg-white">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        {% for order in orders %}
+                        {% if order.staff == user %}
+                        <tr>
+                            <td>{{ order.product.name }}</td>
+                            <td>{{ order.product.quantity }}</td>
+                            <td>{{ order.order_quantity }}</td>
+                            <td>{{ order.date }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        <!-- <thead class="bg-info text-white">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>Book</tr>
+                            <tr>stationary</tr>
+                            <tr>10</tr>
+                        </tbody> -->
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
